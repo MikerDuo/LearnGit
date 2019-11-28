@@ -1,0 +1,67 @@
+$ git config --global user.name "heguojiao"  --输入你的名字
+$ git config --global user.email "hegj@easemob.com"--输入你的邮箱
+git remote   列出所有远程主机
+git remote -v 查看远程仓库的信息（看origin源和upstream源）
+git branch -v 查看自己本地仓库所有的分支
+git branch -r/git branch --remote 查看远程仓库的所有分支（好像只有执行git fetch upstream后才能看见upstream源的分支）
+git fetch upstream 拿远程所有的分支
+git fetch upstream dev 拿远程dev分支
+git checkout -b dev（分支命名：包含作者，jira编号，时间） upstream/dev  从远程拿dev分支到本地
+git branch dev_hello       创建新分支     
+git checkout dev_hello    切换到新分支--这两个命令等同于git checkout -b dev_hello，在自己本地仓库创建分支
+git fetch upstream pull/90/head:cloud13368_dev_47.4_0322   下载别人提交的分支代码
+
+git status 查看当前状态
+git add filename 添加某个文件
+git add -A/git add . 添加所有修改文件到自己本地仓库
+git commit -a/git commit 提交所有修改文件到自己本地仓库
+git show commit号 显示这个commit的修改内容
+git checkout -- 文件名 取消文件修改
+如果文件已经add 到add暂存队列中,要先让这个文件取消暂存 使用git reset HEAD -- 文件名
+git push origin dev_hello（分支名） 将自己本地仓库下的某个分支提交到远程上
+git cherry-pick commit号（自己已经提交的那个commit）    在当前分支下，将之前提交到别的分支的commit号提交到当前分支下
+git reset commit号 --soft      回到原始之前提交的commit点（撤销提交），然后可以重新提交，git status看有待提交
+git reset commit号 - -hard 回到之前提交的commit点，新代码没了，git status看没有待提交
+git push origin 分支名  
+git push origin 分支名 -f    当同一分支提交失败的时候可以强制提交
+git stash
+git stash pop 保存当前工作空间，可以保存未提交的部分，提交已提交的部分，或者可以推出当前分支
+更新完dev分支后，在当前分支下执行
+git rebase dev  将远程的更新到本分支并且将当前分支提交放在最后也就是最新
+git rebase upstream/dev
+git branch -m devel develop 重命名本地分支
+git fetch upstream dev 和 git rebase upstream/dev 合起来等于 git pull --rebase upstream dev
+当rebase有冲突的时候，先打开sts解决冲突
+When you have resolved this problem, run "git rebase --continue".
+If you prefer to skip this patch, run "git rebase --skip" instead.
+To check out the original branch and stop rebasing, run "git rebase --abort".
+
+git remote add upstream https://github.com/easemob/kefu
+git remote remove upstream
+git remote add origin https://github.com/qintiantian/kefu
+git remote remove origin
+git branch   查看当前库有哪些分支
+git branch -r   查看远程分支
+git branch -a   查看所有分支
+git remote   列出所有远程主机
+git remote -v    查看远程主机的网址
+git remote add  添加远程主机
+git remote rm    删除远程主机
+git branch -m dev_cloud_4695 dev_cloud_4695_20170507  重命名远程分支
+Git branch -vv 能看到是从哪个分支下切下来的
+git fetch upstream dev  取回upstream主机中dev到本地，但是此时仍然看不见，需要merge一下到本地分支，本地分支才会更新
+git merge    在本地分支上合并远程分支
+git pull 远程主机名  远程分支名：本地分支名        取回远程主机某个分支的更新与本地指定分支合并
+git push  远程主机名 本地分支名：远程分支名      将本地分支的更新，推送到远程主机
+
+
+git branch -D 分支名      删除本地未合并的分支
+git branch -d 分支名       删除本地已合并的分支
+git push origin  --delete 分支名      删除服务器远端的分支
+Git clean -df 删除所有新增文件
+git log --pretty=format:"%H,%P, %an, %ar, %s"|grep d5dff61d6773f2720b507131e6784cedd20e47d3
+git stash ; //暂存
+git stash list ;//暂存列表
+git stash show -p stash@{0} —可以查看stash列表里的内容
+git stash apply stash@{1}；//恢复stash{}内为index
+git stash clear ;//清空列表
